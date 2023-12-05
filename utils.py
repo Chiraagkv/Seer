@@ -4,12 +4,12 @@ import pyaudio
 import time
 import cv2 
 import pyttsx3
-import keyboard
+# import keyboard
 import requests
 from pathlib import Path
 from tqdm import tqdm
 import speech_recognition as sr
-import pytesseract
+# import pytesseract
 import easyocr
 
 def init():
@@ -58,13 +58,13 @@ def take_command():
 	return query
 
 def detect(image, verbose=0):
-	LABELS = open("D:\\Programming\\Seer\\yolo_config\\coco.names").read().strip().split("\n")
+	LABELS = open("coco.names").read().strip().split("\n")
 
 
-	if not Path('D:\\Programming\\Seer\\yolo_config\\yolov3.weights').is_file():
+	if not Path('yolov3.weights').is_file():
 		download_file("yolov3.weights", "https://pjreddie.com/media/files/yolov3.weights")
 	if verbose: print("[INFO] loading YOLO from disk...")
-	net = cv2.dnn.readNetFromDarknet("D:\\Programming\\Seer\\yolo_config\\yolov3.cfg", "D:\\Programming\\Seer\\yolo_config\\yolov3.weights")
+	net = cv2.dnn.readNetFromDarknet("yolov3.cfg", "yolov3.weights")
 	if verbose: print("Done!")
 
 	ln = net.getLayerNames()
